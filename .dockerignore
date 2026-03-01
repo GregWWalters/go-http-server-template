@@ -1,0 +1,49 @@
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Build artifacts
+out/
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+__debug_bin
+
+# Go workspace
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Documentation
+*.md
+!TEMPLATE_SETUP.md
+LICENSE
+
+# CI/CD
+.github/
+
+# Environment files
+.env
+.env.*
+*.env
+!configs/*.env
+
+# Test coverage
+*.coverprofile
+coverage.txt
+coverage.html
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db

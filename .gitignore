@@ -1,0 +1,52 @@
+# Binaries and build output
+out/
+build/
+*.dll
+*.dylib
+*.exe
+*.exe~
+*.so
+
+# Config Files
+.env
+.envrc
+
+# Temporary and Test files
+*.tmp
+*.bkp
+*.orig
+*.test
+*.wip
+
+# Log files
+*.log
+
+# OS-Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.sw[op]
+.fleet
+tags
+
+# AI local settings
+**/.claude/settings.local.json
+
+# Go
+vendor/
+*.test
+*.out
+
+# TLS certificates (don't commit these)
+*.pem
+*.key
+*.crt
+*.cert
