@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/go-chi/chi/v5"
 )
 
 // ExampleResponse represents a simple JSON response
@@ -31,8 +31,7 @@ func ExampleList() http.HandlerFunc {
 // TODO: Replace with your actual handler logic
 func ExampleGet() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		vars := mux.Vars(r)
-		id := vars["id"]
+		id := chi.URLParam(r, "id")
 
 		w.Header().Set("Content-Type", "application/json")
 

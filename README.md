@@ -5,7 +5,7 @@ A production-ready template for building HTTP servers in Go, featuring configura
 ## Features
 
 - **Configuration Management**: Support for environment variables, .env files, YAML, and JSON configs
-- **HTTP Router**: Gorilla Mux for flexible routing
+- **HTTP Router**: chi for lightweight, idiomatic routing
 - **Middleware Stack**: Logging, recovery, and CORS middleware
 - **Health Checks**: Built-in health check endpoint
 - **Graceful Shutdown**: Proper signal handling for clean server shutdown
@@ -235,7 +235,7 @@ func MyHandler() http.HandlerFunc {
 ```go
 func (s *Server) RegisterRoutes() {
     // ... existing routes ...
-    s.router.HandleFunc("/api/myendpoint", handlers.MyHandler()).Methods("GET")
+    s.router.Get("/api/myendpoint", handlers.MyHandler())
 }
 ```
 

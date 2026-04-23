@@ -10,7 +10,7 @@ import (
 
 	"github.com/OWNER/PROJECT-NAME/internal/config"
 	"github.com/OWNER/PROJECT-NAME/internal/constants"
-	"github.com/OWNER/PROJECT-NAME/pkg/server"
+	"github.com/OWNER/PROJECT-NAME/internal/server"
 )
 
 func main() {
