@@ -17,10 +17,10 @@ Update the Go module path throughout the project:
 - [ ] `Dockerfile` - `BUILD_DIR` ARG (line ~16)
 - [ ] `Dockerfile` - build script `--package-path` (line ~99)
 - [ ] `scripts/build.sh` - `PKG_PATH` default (line ~11)
-- [ ] `pkg/handlers/health.go` (import)
-- [ ] `pkg/handlers/example.go` (import)
-- [ ] `pkg/server/server.go` (imports)
-- [ ] `pkg/server/routes.go` (import)
+- [ ] `internal/handlers/health.go` (import)
+- [ ] `internal/handlers/example.go` (import)
+- [ ] `internal/server/server.go` (imports)
+- [ ] `internal/server/routes.go` (import)
 - [ ] `cmd/server/main.go` (imports)
 
 ### 2. Application Name
@@ -90,9 +90,9 @@ Review and customize configuration:
 
 Remove placeholder code and add your implementation:
 
-- [ ] Remove or replace `pkg/handlers/example.go`
-- [ ] Update `pkg/server/routes.go` to register your actual routes
-- [ ] Update CORS settings in `pkg/middleware/cors.go` for your needs
+- [ ] Remove or replace `internal/handlers/example.go`
+- [ ] Update `internal/server/routes.go` to register your actual routes
+- [ ] Update CORS settings in `internal/middleware/cors.go` for your needs
 
 ### 8. Documentation
 
@@ -210,7 +210,7 @@ If all these steps succeed, your template is properly configured!
 2. **Start building your application by adding:**
    - Your domain models in `internal/models/`
    - Business logic in `internal/services/`
-   - Additional API endpoints in `pkg/handlers/`
+   - Additional API endpoints in `internal/handlers/`
    - Unit tests for handlers and middleware
    - Integration tests in `test/`
 

@@ -1,4 +1,4 @@
-.PHONY: help vet format check clean build run debug attach image test ensure-tools
+.PHONY: help vet format check clean build run debug attach image test ensure-tools .cert
 .PHONY: build-linux build-darwin-amd build-darwin-arm build-windows
 
 help: ## Show this help
@@ -37,7 +37,7 @@ TARGET_ARCH := $(shell $(GOCMD) env GOARCH)
 DOCKERFILE ?= Dockerfile
 BUILDS_DIR ?= out
 BINARIES := $(BINARY_NAME) $(DEBUG_NAME)
-SOURCE_DIRS := pkg internal
+SOURCE_DIRS := internal pkg
 # TODO: Set GH_USERNAME if using private repositories
 GH_USERNAME ?= your-github-username
 
@@ -103,6 +103,10 @@ $(BUILDS_DIR)/$(DEBUG_NAME): $(MAIN) $(SOURCE_DIRS) | $(BUILDS_DIR) vet format
 		--package-path $(PACKAGE_PATH)
 
 # Running and debugging
+.cert: ## Generate self-signed TLS certificates for local development
+	@echo "Generating self-signed certificates..."
+	openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj '/CN=localhost'
+
 run: $(BUILDS_DIR)/$(BINARY_NAME) ## Run the application
 ifdef USE_TLS
 run: | .cert

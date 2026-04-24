@@ -33,8 +33,8 @@ Find and replace the following placeholders throughout the project:
 - `Makefile`: Update `APP_NAME`, `PACKAGE_PATH`, and optionally `GH_USERNAME`
 - `Dockerfile`: Update `APP_NAME`, `BUILD_DIR`, and metadata labels
 - `scripts/build.sh`: Update default values to match your project
-- `pkg/handlers/*.go`: Update import paths
-- `pkg/server/*.go`: Update import paths
+- `internal/handlers/*.go`: Update import paths
+- `internal/server/*.go`: Update import paths
 - `cmd/server/main.go`: Update import paths
 
 **Tip:** Run `grep -r "OWNER/PROJECT-NAME" .` and `grep -r "my-service" .` to find all occurrences.
@@ -176,15 +176,14 @@ docker run -p 8080:8080 -e PORT=3000 -e LOG_LEVEL=DEBUG my-service
 ├── cmd/
 │   └── server/          # Application entry point
 │       └── main.go
-├── internal/            # Private application code
+├── internal/            # Application code
 │   ├── config/          # Configuration management
 │   │   ├── config.go    # Config loader
 │   │   ├── envfile.go   # File parsers (.env, YAML, JSON)
 │   │   ├── flags.go     # Command-line flags
 │   │   └── vars.go      # Config struct and defaults
-│   └── constants/       # Build-time constants
-│       └── version.go
-├── pkg/                 # Public/reusable packages
+│   ├── constants/       # Build-time constants
+│   │   └── version.go
 │   ├── handlers/        # HTTP request handlers
 │   │   ├── health.go    # Health check endpoint
 │   │   └── example.go   # Example API handlers
@@ -195,6 +194,7 @@ docker run -p 8080:8080 -e PORT=3000 -e LOG_LEVEL=DEBUG my-service
 │   └── server/          # HTTP server
 │       ├── server.go    # Server setup and lifecycle
 │       └── routes.go    # Route registration
+├── pkg/                 # Public shared packages (empty)
 ├── configs/             # Configuration file examples
 │   └── example.env
 ├── scripts/             # Build and runtime scripts
@@ -210,7 +210,7 @@ docker run -p 8080:8080 -e PORT=3000 -e LOG_LEVEL=DEBUG my-service
 
 ## Adding New Endpoints
 
-1. **Create a handler** in `pkg/handlers/`:
+1. **Create a handler** in `internal/handlers/`:
 
 ```go
 package handlers
@@ -230,7 +230,7 @@ func MyHandler() http.HandlerFunc {
 }
 ```
 
-2. **Register the route** in `pkg/server/routes.go`:
+2. **Register the route** in `internal/server/routes.go`:
 
 ```go
 func (s *Server) RegisterRoutes() {
@@ -362,7 +362,7 @@ Connect your IDE's debugger to `localhost:2345`.
 
 - [ ] Update all placeholder values (see "Update Project References" above)
 - [ ] Replace example handlers with your actual API endpoints
-- [ ] Configure CORS settings in `pkg/middleware/cors.go`
+- [ ] Configure CORS settings in `internal/middleware/cors.go`
 - [ ] Add authentication/authorization middleware if needed
 - [ ] Set up TLS certificates for production
 - [ ] Add database connection and models (if needed)
